@@ -8,7 +8,7 @@ function binDec(number) {
         result += item * Math.pow(2, length)
         length--
     })
-    return result
+    return parseInt(result)
 }
 
 // Conversão Binário para Hexadecimal
@@ -53,7 +53,7 @@ function decBin(number) {
         number = Math.trunc(number / 2)
             // console.log("After = number: " + number + " - result: " + result + "\n")
     }
-    return number.toString() + result
+    return parseInt(number.toString() + result)
 }
 
 // Conversão Decimal para Hexadecimal
@@ -91,29 +91,29 @@ function hexDec(number) {
         result += i * Math.pow(16, numberLength)
         numberLength--
     }
-    return result
+    return parseInt(result)
 }
 
 function tableDecHex(number) {
     number = number.toString()
     switch (number) {
         case "10":
-            return "A"
+            return "a"
             break;
         case "11":
-            return "B"
+            return "b"
             break;
         case "12":
-            return "C"
+            return "c"
             break;
         case "13":
-            return "D"
+            return "d"
             break;
         case "14":
-            return "E"
+            return "e"
             break;
         case "15":
-            return "F"
+            return "f"
             break;
         default:
             return number
@@ -124,22 +124,22 @@ function tableDecHex(number) {
 function tableHexDec(number) {
     number = number.toString()
     switch (number) {
-        case "A":
+        case "a":
             return "10"
             break;
-        case "B":
+        case "b":
             return "11"
             break;
-        case "C":
+        case "c":
             return "12"
             break;
-        case "D":
+        case "d":
             return "13"
             break;
-        case "E":
+        case "e":
             return "14"
             break;
-        case "F":
+        case "f":
             return "15"
             break;
         default:
@@ -182,22 +182,22 @@ function tableBinHex(number) {
             return "9"
             break
         case "1010":
-            return "A"
+            return "a"
             break
         case "1011":
-            return "B"
+            return "b"
             break
         case "1100":
-            return "C"
+            return "c"
             break
         case "1101":
-            return "D"
+            return "d"
             break
         case "1110":
-            return "E"
+            return "e"
             break
         case "1111":
-            return "F"
+            return "f"
             break
         default:
             return "error"
@@ -237,50 +237,54 @@ function tableHexBin(number) {
         case "9":
             return "1001"
             break
-        case "A":
+        case "a":
             return "1010"
             break
-        case "B":
+        case "b":
             return "1011"
             break
-        case "C":
+        case "c":
             return "1100"
             break
-        case "D":
+        case "d":
             return "1101"
             break
-        case "E":
+        case "e":
             return "1110"
             break
-        case "F":
+        case "f":
             return "1111"
             break
     }
 }
+let input = require('fs').readFileSync('./node.js/file.txt', 'utf8')
+let lines = input.split('\n')
+let numberInputs = lines.shift()
+let inputs = lines
 
-let numberInputs = 3
 for (let i = 0; i < numberInputs; i++) {
-    let input = ""
-    input = input.split(" ")
-    let number = input[0]
-    let base = input[1]
-
+    console.log("Case " + (i + 1) + ":")
+    let inputInside = inputs[i]
+    inputInside = inputInside.replace("\r", "")
+    inputInside = inputInside.split(" ")
+    let number = inputInside[0]
+    let base = inputInside[1]
     switch (base) {
         case "dec":
-            console.log(decBin(number) + " bin")
             console.log(decHex(number) + " hex")
+            console.log(decBin(number) + " bin")
             break
         case "bin":
             console.log(binDec(number) + " dec")
             console.log(binHex(number) + " hex")
             break
-        case "bin":
-            console.log(hexBin(number) + " bin")
+        case "hex":
             console.log(hexDec(number) + " dec")
+            console.log(hexBin(number) + " bin")
             break
-
     }
+    console.log("")
 
 }
-console.log(hexDec("8ED3"))
-console.log(decHex("36563"))
+// console.log(decHex("36563"))
+// console.log(hexDec("8ED3"))
