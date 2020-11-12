@@ -1,4 +1,4 @@
-let input = require('fs').readFileSync('./node.js/1198.txt', 'utf8')
+let input = require('fs').readFileSync('./1198.txt', 'utf8')
 let lines = input.split('\n')
 
 for (let item of lines) {
